@@ -1,0 +1,21 @@
+<!-- quiz/templates/quiz/result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+</head>
+<body>
+    <h1>Quiz Results</h1>
+
+    <p><strong>Correct Answers:</strong> {{ correct_answers }}/{{ total_questions }}</p>
+    <p><strong>Incorrect Answers:</strong> {{ incorrect_answers }}/{{ total_questions }}</p>
+    <p><strong>Score:</strong> {{ score }}/{{ total_questions }} ({{ percentage }}%)</p>
+
+    <p><strong>Counter:</strong> {{ counter }}</p>
+    
+    <a href="{% url 'quiz' %}">Go Back to Quiz</a>
+</body>
+</html>
