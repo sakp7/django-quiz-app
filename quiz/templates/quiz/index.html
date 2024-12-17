@@ -1,0 +1,44 @@
+<!-- quiz/templates/quiz/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>{{ hello_message }}</h1>
+    <p>Counter: {{ counter }}</p>
+
+    <!-- Form to submit and increment counter -->
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Increment Counter</button>
+    </form>
+
+    <hr>
+
+    <!-- Display questions -->
+    {% if questions %}
+        <h2>Quiz Questions:</h2>
+        <form method="POST" action="{% url 'submit_quiz' %}">
+            {% csrf_token %}
+            {% for question in questions %}
+                <div>
+                    <p><strong>{{ question.question }}</strong></p>
+                    {% for option in question.options %}
+                        <label>
+                            <input type="radio" name="question-{{ forloop.counter }}" value="{{ option }}" required />
+                            <span>{{ option }}</span>
+                        </label><br>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit Quiz</button>
+        </form>
+    {% else %}
+        <p>No questions available.</p>
+    {% endif %}
+</body>
+</html>
